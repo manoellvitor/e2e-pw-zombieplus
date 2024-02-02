@@ -3,7 +3,7 @@ const { test } = require("../support");
 test("must be able to login with valid credentials", async ({ page }) => {
   await page.login.visit();
   await page.login.submitForm("admin@zombieplus.com", "pwd123");
-  await page.movies.isLoggedIn();
+  await page.login.isLoggedIn();
 });
 
 test("must not be able to login with invalid email", async ({ page }) => {
