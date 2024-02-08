@@ -1,9 +1,9 @@
 const { test } = require("../support");
 
-test("must be able to login with valid credentials", async ({ page }) => {
+test("must be able to login as admin", async ({ page }) => {
   await page.login.visit();
   await page.login.submitForm("admin@zombieplus.com", "pwd123");
-  await page.login.isLoggedIn();
+  await page.login.isLoggedIn("Admin");
 });
 
 test("must not be able to login with invalid email", async ({ page }) => {

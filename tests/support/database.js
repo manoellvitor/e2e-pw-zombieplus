@@ -13,8 +13,7 @@ export async function executeSQL(sqlScript) {
   try {
     const pool = new Pool(DbConfig);
     const client = await pool.connect();
-    const result = await client.query(sqlScript);
-    console.log(result);
+    await client.query(sqlScript);
   } catch (error) {
     console.log(`Error: ${error}`);
   }

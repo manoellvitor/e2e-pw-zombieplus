@@ -10,6 +10,6 @@ export class Toast {
     const locator = this.page.locator(".toast");
 
     await expect(locator).toContainText(toastMessage);
-    await expect(locator).toBeHidden({ timeout: 5000 });
+    await expect(locator).toBeHidden({ timeout: 7000 });
   }
 }

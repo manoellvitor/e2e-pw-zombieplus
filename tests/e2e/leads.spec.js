@@ -1,4 +1,3 @@
-// const { expect } = require("@playwright/test");
 const { test, expect } = require("../support");
 const { faker } = require("@faker-js/faker");
 

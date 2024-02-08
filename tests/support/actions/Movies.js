@@ -13,7 +13,7 @@ export class Movies {
     await this.page.getByRole("button", { name: "Cadastrar" }).click();
   }
 
-  async create(title, overview, company, release_year) {
+  async create({ title, overview, company, release_year }) {
     await this.openForm();
     await this.page.getByLabel("Titulo do filme").fill(title);
     await this.page.getByLabel("Sinopse").fill(overview);
