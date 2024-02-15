@@ -13,7 +13,7 @@ export class Movies {
     await this.page.getByRole("button", { name: "Cadastrar" }).click();
   }
 
-  async create({ title, overview, company, release_year }) {
+  async create({ title, overview, company, release_year, cover, featured }) {
     await this.openForm();
     await this.page.getByLabel("Titulo do filme").fill(title);
     await this.page.getByLabel("Sinopse").fill(overview);
@@ -33,6 +33,14 @@ export class Movies {
       .locator(".react-select__option")
       .filter({ hasText: release_year })
       .click();
+
+    await this.page
+      .locator("input[name=cover]")
+      .setInputFiles(`tests/support/fixtures${cover}`);
+
+    if (featured) {
+      await this.page.locator(".featured .react-switch").click();
+    }
 
     await this.submitForm();
   }
