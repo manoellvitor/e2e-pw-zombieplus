@@ -45,9 +45,29 @@ export class Movies {
     await this.submitForm();
   }
 
+  async search(target) {
+    await this.page.getByPlaceholder("Busque pelo nome").fill(target);
+
+    await this.page.click(".actions button");
+  }
+
+  async tableHave(content) {
+    // This was supposed to work with 'row' as well, but sometimes it does not work very well.
+    const rows = this.page.getByRole("cell");
+    await expect(rows).toContainText(content);
+  }
+
   async alertToHaveText(message) {
     const locator = this.page.locator(".alert");
 
     await expect(locator).toHaveText(message);
+  }
+
+  async remove(movieTitle) {
+    await this.page
+      .getByRole("row", { name: movieTitle })
+      .getByRole("button")
+      .click();
+    await this.page.click(".confirm-removal");
   }
 }

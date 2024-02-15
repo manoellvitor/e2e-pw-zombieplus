@@ -15,7 +15,7 @@ test("must not be able to login with invalid email", async ({ page }) => {
 test("must not be able to login with invalid password", async ({ page }) => {
   await page.login.visit();
   await page.login.submitForm("admin@zombieplus.com", "abc123");
-  await page.toast.containText(
+  await page.popup.haveText(
     "Ocorreu um erro ao tentar efetuar o login. Por favor, verifique suas credenciais e tente novamente."
   );
 });
