@@ -45,17 +45,19 @@ test("must not be able to create a tvshow with duplicated title", async ({
   );
 });
 
-test("must not be able to create a new movie if required fields are empty", async ({
+test("must not be able to create a new tvshow if required fields are empty", async ({
   page,
 }) => {
   await page.login.do("admin@zombieplus.com", "pwd123", "Admin");
-  await page.movies.openForm();
-  await page.movies.submitForm();
-  await page.movies.alertToHaveText([
+  await page.tvshows.go("/admin/tvshows");
+  await page.tvshows.openForm();
+  await page.tvshows.submitForm();
+  await page.tvshows.alertToHaveText([
     "Campo obrigatório",
     "Campo obrigatório",
     "Campo obrigatório",
     "Campo obrigatório",
+    "Campo obrigatório (apenas números)",
   ]);
 });
 
