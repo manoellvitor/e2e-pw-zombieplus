@@ -1,7 +1,7 @@
 const { test } = require("../support");
 
 test("must be able to login as admin", async ({ page }) => {
-  await page.login.visit();
+  await page.login.visit("/admin/login");
   await page.login.submitForm("admin@zombieplus.com", "pwd123");
   await page.login.isLoggedIn("Admin");
 });
