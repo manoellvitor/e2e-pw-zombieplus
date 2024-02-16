@@ -29,18 +29,19 @@ test("must be able to remove a tvshow", async ({ page, request }) => {
   await page.popup.haveText("Série removida com sucesso.");
 });
 
-test("must not be able to create a movie with duplicated title", async ({
+test("must not be able to create a tvshow with duplicated title", async ({
   page,
   request,
 }) => {
-  const movie = data.duplicate;
+  const tvshow = data.duplicate;
 
-  await request.api.postMovie(movie);
+  await request.api.postTvShow(tvshow);
 
   await page.login.do("admin@zombieplus.com", "pwd123", "Admin");
-  await page.movies.create(movie);
+  await page.tvshows.go("/admin/tvshows");
+  await page.tvshows.create(tvshow);
   await page.popup.haveText(
-    `O título '${movie.title}' já consta em nosso catálogo. Por favor, verifique se há necessidade de atualizações ou correções para este item.`
+    `O título '${tvshow.title}' já consta em nosso catálogo. Por favor, verifique se há necessidade de atualizações ou correções para este item.`
   );
 });
 
