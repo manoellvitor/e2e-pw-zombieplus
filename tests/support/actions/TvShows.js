@@ -13,6 +13,10 @@ export class TvShows {
     await this.page.getByRole("button", { name: "Cadastrar" }).click();
   }
 
+  async go(path) {
+    await this.page.goto(path);
+  }
+
   async create({
     title,
     overview,
@@ -22,7 +26,6 @@ export class TvShows {
     featured,
     season,
   }) {
-    await this.page.goto("/admin/tvshows");
     await this.openForm();
     await this.page.getByLabel("Titulo da série").fill(title);
     await this.page.getByLabel("Sinopse").fill(overview);
@@ -74,9 +77,9 @@ export class TvShows {
     await expect(locator).toHaveText(message);
   }
 
-  async remove(movieTitle) {
+  async remove(tvShowTitle) {
     await this.page
-      .getByRole("row", { name: movieTitle })
+      .getByRole("row", { name: tvShowTitle })
       .getByRole("button")
       .click();
     await this.page.click(".confirm-removal");

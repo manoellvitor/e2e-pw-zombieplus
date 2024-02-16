@@ -75,7 +75,7 @@ export class Api {
         release_year: tvshow.release_year,
         featured: tvshow.featured,
         cover: "",
-        season: tvshow.season,
+        seasons: tvshow.season,
       },
     });
     expect(await response.ok()).toBeTruthy();

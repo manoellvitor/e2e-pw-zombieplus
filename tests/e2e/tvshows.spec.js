@@ -11,6 +11,7 @@ test("must be able to create a new tvshow", async ({ page }) => {
   const tvshow = data.create;
 
   await page.login.do("admin@zombieplus.com", "pwd123", "Admin");
+  await page.tvshows.go("/admin/tvshows");
   await page.tvshows.create(tvshow);
   await page.popup.haveText(
     `A série '${tvshow.title}' foi adicionada ao catálogo.`
@@ -20,11 +21,12 @@ test("must be able to create a new tvshow", async ({ page }) => {
 test("must be able to remove a tvshow", async ({ page, request }) => {
   const tvshow = data.to_remove;
 
-  await request.api.postMovie(tvshow);
+  await request.api.postTvShow(tvshow);
 
   await page.login.do("admin@zombieplus.com", "pwd123", "Admin");
-  await page.movies.remove(movie.title);
-  await page.popup.haveText("Filme removido com sucesso.");
+  await page.tvshows.go("/admin/tvshows");
+  await page.tvshows.remove(tvshow.title);
+  await page.popup.haveText("Série removida com sucesso.");
 });
 
 test("must not be able to create a movie with duplicated title", async ({
