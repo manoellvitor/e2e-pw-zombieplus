@@ -65,13 +65,14 @@ test("must be able to search for the term zombie", async ({
   page,
   request,
 }) => {
-  const movies = data.search;
+  const shows = data.search;
 
-  movies.data.forEach(async (movie) => {
-    await request.api.postMovie(movie);
+  shows.data.forEach(async (tvshow) => {
+    await request.api.postTvShow(tvshow);
   });
 
   await page.login.do("admin@zombieplus.com", "pwd123", "Admin");
-  await page.movies.search(movies.input);
-  await page.movies.tableHave(movies.outputs);
+  await page.tvshows.go("/admin/tvshows");
+  await page.tvshows.search(shows.input);
+  await page.tvshows.tableHave(shows.outputs);
 });
