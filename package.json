@@ -13,5 +13,8 @@
     "@types/node": "^20.11.6",
     "dotenv": "^16.4.1",
     "pg": "^8.11.3"
+  },
+  "dependencies": {
+    "playwright-tesults-reporter": "^1.1.0"
   }
 }
